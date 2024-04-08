@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Sidebar */
+.sidebar {
+  background-color: #FD7E14;
+  padding-top: 3%;
+  width: 17%;
+  height: 100vh;
+  position: fixed;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  left: 0;
+}
+
+@media (max-width: 400px) {
+  .sidebar {
+    padding: 5px;
+    width: auto;
+    max-width: 150px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+  }
+  .sidebar-logo {
+      display: none;
+    }
+}
+
+.sidelinks {
+  flex: 1;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sidebar-logo {
+  width: 100%;
+  line-height: 1;
+}
+
+.sidebar-logo p {
   color: white;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bolder;
+  margin: 0;
+  margin-left: 20%;
 }
 
-.App-link {
-  color: #61dafb;
+
+.sidebar-item img {
+  width: 20px; /* Adjust the width of the images */
+  height: 20px; /* Adjust the height of the images */
+  margin-right: 10px; /* Add some margin between image and text */
+  display: inline-block; /* Ensure the image and text display inline */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-item {
+  padding: 10px 10px;
+  color: white;
+  cursor: pointer;
+  width: 95%;
+  height: 50px;
+  border-radius: 20px;
+  margin-bottom: 2%;
+  display: flex; /* Align text and image horizontally */
+  align-items: center; /* Center items vertically */
 }
+.logout-button {
+  padding: 10px 10px;
+  color: white;
+  cursor: pointer;
+  width: 95%;
+  height: 50px;
+  border-radius: 20px;
+  margin-bottom: 2%;
+  display: flex; /* Align text and image horizontally */
+  align-items: center; /* Center items vertically */
+}
+
+.sidebar-item:hover {
+  background-color: white;
+  color: #343A40;
+  width: 95%;
+  height: 50px;
+}
+/* ------------------------ */
