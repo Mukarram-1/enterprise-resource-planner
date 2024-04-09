@@ -12,7 +12,7 @@ export default function Dashboard() {
       <div className="dashboard">
         <Sidebar />
         <div className="dashboard-content">
-          <h2>Welcome to ERP Dashboard</h2>
+          <h2>Welcome to Dashboard</h2>
           <div className="cards">
             <Analyticscard
               icon={<TrendingUpIcon style={{ fontSize: "50px" }} />}
