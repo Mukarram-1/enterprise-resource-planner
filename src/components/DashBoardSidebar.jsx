@@ -5,6 +5,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import StoreIcon from '@mui/icons-material/Store';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import CategoryIcon from '@mui/icons-material/Category';
+
 export default function Sidebar({ onSidebarItemClick }) {
   return (
     <div className="sidebar">
@@ -22,12 +25,20 @@ export default function Sidebar({ onSidebarItemClick }) {
         <Link to="/tasks"><span>Tasks</span></Link>
       </div>
       <div className="sidebar-item">
-        <InventoryIcon/>
+        <CategoryIcon/>
        <Link to="/products"> <span>Products</span></Link>
       </div>
       <div className="sidebar-item">
         <StoreIcon/>
         <Link to="/vendors"><span>Vendors</span></Link>
+      </div>
+      <div className="sidebar-item">
+        <ListAltIcon/>
+        <Link to="/orders"><span>Orders</span></Link>
+      </div>
+      <div className="sidebar-item">
+        <InventoryIcon/>
+        <Link to="/inventory"><span>Inventory</span></Link>
       </div>
     </div>
   );

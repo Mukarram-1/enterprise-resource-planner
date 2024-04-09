@@ -1,5 +1,5 @@
 import React from 'react';
-import './customertable.css'; // Assume you have a CSS file with the styles provided below
+import './table.css'; // Assume you have a CSS file with the styles provided below
 
 function CustomerTable() {
   const customers = [
@@ -49,7 +49,7 @@ function CustomerTable() {
 
   return (
     <div>
-      <table className="customer-table">
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>
