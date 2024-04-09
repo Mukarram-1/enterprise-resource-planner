@@ -31,7 +31,7 @@ export default function Dashboard() {
             />
           </div>
           <div className="customers">
-            <h2>Our Customers</h2>
+            <h2>Customers</h2>
             <CustomerTable/>
           </div>
         </div>

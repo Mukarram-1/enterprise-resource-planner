@@ -60,3 +60,9 @@ a {
   justify-content: center;
   gap: 50px;
 }
+
+/* Main div of all files */
+.main {
+  margin-left: 17%;
+  margin-right: 1%;
+}
