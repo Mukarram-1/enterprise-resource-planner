@@ -1,0 +1,29 @@
+.customer-table {
+  width: 100%;
+  border: 1px solid #dddddd;
+  border-collapse: separate;
+  border-spacing: 0 15px; /* Increased space between rows */
+  border-radius: 10px; /* Border radius around the table */
+  overflow: hidden; /* Ensures border-radius is applied properly */
+}
+
+.customer-table th,
+.customer-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.customer-table th {
+  background-color: #f2f2f2;
+}
+
+.customer-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.customer-table td,
+.customer-table th {
+  border-bottom: 1px solid #dddddd; /* Only border at the bottom */
+}
+.customer-table tr:hover {
+  background-color: #e2e2e2;
+}

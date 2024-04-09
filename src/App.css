@@ -1,89 +1,56 @@
+body{
+  background-color: #f5f7fa;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
 /* Sidebar */
 .sidebar {
-  background-color: #FD7E14;
-  padding-top: 3%;
-  width: 17%;
+  width: 200px;
+  background-color: #ffffff;
   height: 100vh;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  left: 0;
-}
-
-@media (max-width: 400px) {
-  .sidebar {
-    padding: 5px;
-    width: auto;
-    max-width: 150px;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-  }
-  .sidebar-logo {
-      display: none;
-    }
-}
-
-.sidelinks {
-  flex: 1;
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.sidebar-logo {
-  width: 100%;
-  line-height: 1;
-}
-
-.sidebar-logo p {
-  color: white;
-  text-align: left;
-  font-size: 40px;
-  font-weight: bolder;
-  margin: 0;
-  margin-left: 20%;
-}
-
-
-.sidebar-item img {
-  width: 20px; /* Adjust the width of the images */
-  height: 20px; /* Adjust the height of the images */
-  margin-right: 10px; /* Add some margin between image and text */
-  display: inline-block; /* Ensure the image and text display inline */
 }
 
 .sidebar-item {
-  padding: 10px 10px;
-  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px;
   cursor: pointer;
-  width: 95%;
-  height: 50px;
-  border-radius: 20px;
-  margin-bottom: 2%;
-  display: flex; /* Align text and image horizontally */
-  align-items: center; /* Center items vertically */
-}
-.logout-button {
-  padding: 10px 10px;
-  color: white;
-  cursor: pointer;
-  width: 95%;
-  height: 50px;
-  border-radius: 20px;
-  margin-bottom: 2%;
-  display: flex; /* Align text and image horizontally */
-  align-items: center; /* Center items vertically */
 }
 
 .sidebar-item:hover {
-  background-color: white;
-  color: #343A40;
-  width: 95%;
-  height: 50px;
+  background-color: #1814F3;
+  color: #ffffff;
 }
-/* ------------------------ */
+
+.sidebar-item i {
+  margin-right: 10px;
+}
+
+.sidebar-item span {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+/* Dashboard */
+.dashboard {
+  display: flex;
+
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.cards{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+

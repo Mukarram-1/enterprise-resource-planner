@@ -1,36 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PersonIcon from '@mui/icons-material/Person';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import StoreIcon from '@mui/icons-material/Store';
 export default function Sidebar({ onSidebarItemClick }) {
   return (
-    <div className='sidebar'>
-      <div className="sidebar-logo">
-        <p>Banker.</p>
+    <div className="sidebar">
+     <h2 style={{textAlign:"center"}}>ERP</h2>
+      <div className="sidebar-item">
+        <DashboardIcon/>
+        <Link to="/dashboard"><span>Dashboard</span></Link>
       </div>
-      <div className='sidelinks'>
-        <Link to="#" onClick={() => onSidebarItemClick('UserPortal')} className='sidebar-item'>
-          <img src="home-1-svgrepo-com.svg" alt="Dashboard Icon" />
-          Dashboard
-        </Link>
-        <Link to="#" onClick={() => onSidebarItemClick('Transactions')} className='sidebar-item'>
-          <img src="ecommerce-shop-transaction-svgrepo-com.svg" alt="Transactions Icon" />
-          Transactions
-        </Link>
-        <Link to="#" onClick={() => onSidebarItemClick('Payments')} className='sidebar-item'>
-          <img src="receive-square-svgrepo-com.svg" alt="Payments Icon" />
-          Payments
-        </Link>
-        <Link to="#" onClick={() => onSidebarItemClick('Settings')} className='sidebar-item'>
-          <img src="setting-2-svgrepo-com.svg" alt="Settings Icon" />
-          Settings
-        </Link>
+      <div className="sidebar-item">
+        <PersonIcon/>
+        <Link to="/employees"><span>Employees</span></Link>
       </div>
-      <div className='logout-button'>
-        <Link to="Signin" className='sidebar-item'>
-          <img src="logout-3-svgrepo-com.svg" alt="Logout Icon" />
-          Logout
-        </Link>
+      <div className="sidebar-item">
+        <AssignmentIcon/>
+        <Link to="/tasks"><span>Tasks</span></Link>
+      </div>
+      <div className="sidebar-item">
+        <InventoryIcon/>
+       <Link to="/products"> <span>Products</span></Link>
+      </div>
+      <div className="sidebar-item">
+        <StoreIcon/>
+        <Link to="/vendors"><span>Vendors</span></Link>
       </div>
     </div>
-  )
+  );
 }

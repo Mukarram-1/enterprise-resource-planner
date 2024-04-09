@@ -1,0 +1,31 @@
+.card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 280px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    height: 80px;
+  }
+  
+  .card-icon {
+    margin-right: 50px;
+  }
+  
+  .card-content {
+    flex: 1;
+  }
+  
+  .card-heading {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .card-number {
+    margin: 5px 0 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
