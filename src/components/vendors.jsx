@@ -54,7 +54,7 @@ function Employees() {
     <div>
       <Sidebar />
       <div className='main'>
-        <h2>Manage Venders</h2>
+        <h2>Manage Vendors</h2>
         <table className="table">
           <thead>
             <tr>
