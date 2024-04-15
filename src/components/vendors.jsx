@@ -1,7 +1,9 @@
 import React from 'react';
 import './table.css';
 import Sidebar from "./DashBoardSidebar";
-
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Link } from 'react-router-dom';
 function Employees() {
   const customers = [
     {
@@ -61,6 +63,8 @@ function Employees() {
               <th>Materials</th>
               <th>Orders</th>
               <th>Contact</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -71,6 +75,8 @@ function Employees() {
                 <td>{customer.materials}</td>
                 <td>{customer.orders}</td>
                 <td>{customer.contact}</td>
+                <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
+                <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>
             ))}
           </tbody>

@@ -1,6 +1,9 @@
 import React from 'react';
 import './table.css';
 import Sidebar from "./DashBoardSidebar";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Link } from 'react-router-dom';
 
 function Inventory() {
   const items = [
@@ -28,6 +31,8 @@ function Inventory() {
                 <th>Unit Cost</th>
                 <th>Total Value</th>
                 <th>Last Updated</th>
+                <th></th>
+                <th></th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +45,8 @@ function Inventory() {
                 <td>{item.cost}</td>
                 <td>{item.value}</td>
                 <td>{item.lastUpdated}</td>
+                <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
+                <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
                 </tr>
             ))}
           </tbody>
