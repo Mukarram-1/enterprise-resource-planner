@@ -4,7 +4,8 @@ import Sidebar from "./DashBoardSidebar";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
-import VendorModalForm from "./vendormodalform";
+import OrderRawMaterialsModalForm from "./oderRawMaterialsModalform";
+
 function RawMaterials() {
   const customers = [
     {
@@ -67,7 +68,7 @@ function RawMaterials() {
           <h2>Raw Material Analysis</h2>
           <div className="modalbtn">
             <button onClick={openModal}>Order Raw Materials</button>
-            <VendorModalForm isOpen={isModalOpen} onClose={closeModal} />
+            <OrderRawMaterialsModalForm isOpen={isModalOpen} onClose={closeModal} />
           </div>
         </div>
         <table className="table">

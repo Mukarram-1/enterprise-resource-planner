@@ -1,5 +1,5 @@
 body {
-  background-color: #f5f7fa;
+  background-color: #F5F7FA;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -77,3 +77,84 @@ a {
   display: flex;
   align-items: center;
 }
+
+/* Signin */
+.main-signin {
+  font-family: Platypi;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+  background-color: white;
+}
+.main-signin .form {
+  background-color: white;
+  width: 30%;
+  height: 80vh;
+  margin-left: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-signin .form form {
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+}
+.main-signin .form .inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-signin .form .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-signin .form button {
+  color: white;
+  background-color: #018673;
+  border: 1px solid #018673;
+  border-radius: 10px;
+  height: 35px;
+  margin-top: 5%;
+  width: 30%;
+  font-size: 18px;
+}
+.main-signin .form form button:hover {
+    background-color: #00C8AC;
+    border: 1px solid #00C8AC;
+}
+.main-signin .form form .Link {
+  font-size: 13px;
+  text-decoration: underline;
+}
+.main-signin .form form input {
+  height: 37px;
+  width: 80%;
+  border: 1px solid rgb(182, 182, 182, 0.3);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+@media (max-width: 768px) {
+  .main-signin .form {
+    width: 80%;
+    height: auto;
+    padding: 50px 0px;
+  }
+  .main-signin .logo-div {
+    display: none;
+  }
+}
+.main-signin .logo-div {
+  background-image: url(/public/sidepic.jpg);
+  background-size: cover;
+  width: 35%;
+  height: 80vh;
+}
+/* ------------------------ */

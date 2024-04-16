@@ -8,12 +8,13 @@ import Products from './components/products';
 import Inventory from './components/inventory';
 import Orders from './components/orders';
 import RawMaterials from './components/rawmaterials';
+import Signin from './components/signin'
 
 function App() {
   return (
     <div className="App">
        <Routes>
-        <Route path="/" element={<Dashboard/>} />
+        <Route path="/" element={<Signin/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/vendors" element={<Vendors/>} />
         <Route path="/employees" element={<Employees/>} />
