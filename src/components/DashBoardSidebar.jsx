@@ -7,6 +7,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import StoreIcon from '@mui/icons-material/Store';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import CategoryIcon from '@mui/icons-material/Category';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
 export default function Sidebar({ onSidebarItemClick }) {
   return (
@@ -31,6 +32,10 @@ export default function Sidebar({ onSidebarItemClick }) {
       <div className="sidebar-item">
         <StoreIcon/>
         <Link style={{width:"100%"}} to="/vendors"><span>Vendors</span></Link>
+      </div>
+      <div className="sidebar-item">
+        <ProductionQuantityLimitsIcon/>
+        <Link to="/rawmaterials"><span>Raw Materials</span></Link>
       </div>
       <div className="sidebar-item">
         <ListAltIcon/>

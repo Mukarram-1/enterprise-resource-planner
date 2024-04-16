@@ -7,7 +7,8 @@ import Tasks from './components/tasks';
 import Products from './components/products';
 import Inventory from './components/inventory';
 import Orders from './components/orders';
-import Signin from './components/signin';
+import RawMaterials from './components/rawmaterials';
+import Signin from './components/signin'
 
 function App() {
   return (
@@ -21,8 +22,7 @@ function App() {
         <Route path="/products" element={<Products/>} />
         <Route path="/inventory" element={<Inventory/>} />
         <Route path="/orders" element={<Orders/>} />
-        <Route path="/orders" element={<Signin/>} />
-        
+        <Route path="/rawmaterials" element={<RawMaterials/>} />
       </Routes>
     </div>
   );

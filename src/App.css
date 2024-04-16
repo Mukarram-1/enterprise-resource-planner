@@ -29,7 +29,7 @@ a {
 }
 
 .sidebar-item:hover {
-  background-color: #1814F3;
+  background-color: #1a16f3;
   color: #ffffff;
 }
 
@@ -66,8 +66,19 @@ a {
   margin-left: 17%;
   margin-right: 1%;
 }
+/* Button for add things */
+.manageheading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-/* Signin Signup */
+.modalbtn {
+  display: flex;
+  align-items: center;
+}
+
+/* Signin */
 .main-signin {
   font-family: Platypi;
   display: flex;
