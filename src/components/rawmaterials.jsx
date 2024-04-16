@@ -5,7 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
 import VendorModalForm from "./vendormodalform";
-function Employees() {
+function RawMaterials() {
   const customers = [
     {
       id: '1',
@@ -64,19 +64,20 @@ function Employees() {
       <Sidebar />
       <div className='main'>
       <div className="manageheading">
-          <h2>Manage Vendors</h2>
+          <h2>Raw Material Analysis</h2>
           <div className="modalbtn">
-            <button onClick={openModal}>Add Vendor</button>
+            <button onClick={openModal}>Order Raw Materials</button>
             <VendorModalForm isOpen={isModalOpen} onClose={closeModal} />
           </div>
         </div>
         <table className="table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Materials</th>
-              <th>Contact</th>
+              <th>Order ID</th>
+              <th>Vendor</th>
+              <th>Material Name</th>
+              <th>Estimated Delivery Date</th>
+              <th>Quantity</th>
               <th></th>
               <th></th>
             </tr>
@@ -87,6 +88,7 @@ function Employees() {
                 <td>{customer.id}</td>
                 <td>{customer.name}</td>
                 <td>{customer.materials}</td>
+                <td>{customer.deliveryDate}</td>
                 <td>{customer.contact}</td>
                 <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
@@ -95,8 +97,8 @@ function Employees() {
           </tbody>
         </table>
         </div>
-      </div>
+    </div>
   );
 }
 
-export default Employees;
+export default RawMaterials;

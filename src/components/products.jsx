@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './table.css';
 import Sidebar from "./DashBoardSidebar";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
+import ProductModalForm from './productmodalform';
 function Products() {
   const customers = [
     {
@@ -50,11 +51,26 @@ function Products() {
     }
   ];
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div>
       <Sidebar />
       <div className='main'>
+        <div className="manageheading">
         <h2>Manage Products</h2>
+          <div className="modalbtn">
+            <button onClick={openModal}>Add Product</button>
+            <ProductModalForm isOpen={isModalOpen} onClose={closeModal} />
+          </div>
+        </div>
         <table className="table">
           <thead>
             <tr>

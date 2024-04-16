@@ -7,6 +7,8 @@ import Tasks from './components/tasks';
 import Products from './components/products';
 import Inventory from './components/inventory';
 import Orders from './components/orders';
+import RawMaterials from './components/rawmaterials';
+
 function App() {
   return (
     <div className="App">
@@ -19,7 +21,7 @@ function App() {
         <Route path="/products" element={<Products/>} />
         <Route path="/inventory" element={<Inventory/>} />
         <Route path="/orders" element={<Orders/>} />
-        
+        <Route path="/rawmaterials" element={<RawMaterials/>} />
       </Routes>
     </div>
   );
