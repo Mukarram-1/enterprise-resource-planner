@@ -75,7 +75,7 @@ function RawMaterials() {
           <thead>
             <tr>
               <th>Order ID</th>
-              <th>Vendor</th>
+              <th>Vendor Name</th>
               <th>Material Name</th>
               <th>Estimated Delivery Date</th>
               <th>Quantity</th>
