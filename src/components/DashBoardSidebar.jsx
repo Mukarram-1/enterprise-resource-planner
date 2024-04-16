@@ -14,31 +14,31 @@ export default function Sidebar({ onSidebarItemClick }) {
      <h2 style={{textAlign:"center"}}>ERP</h2>
       <div className="sidebar-item">
         <DashboardIcon/>
-        <Link to="/dashboard"><span>Dashboard</span></Link>
+        <Link style={{width:"100%"}} to="/dashboard"><span>Dashboard</span></Link>
       </div>
       <div className="sidebar-item">
         <PersonIcon/>
-        <Link to="/employees"><span>Employees</span></Link>
+        <Link style={{width:"100%"}} to="/employees"><span>Employees</span></Link>
       </div>
       <div className="sidebar-item">
         <AssignmentIcon/>
-        <Link to="/tasks"><span>Tasks</span></Link>
+        <Link style={{width:"100%"}} to="/tasks"><span>Tasks</span></Link>
       </div>
       <div className="sidebar-item">
         <CategoryIcon/>
-       <Link to="/products"> <span>Products</span></Link>
+       <Link style={{width:"100%"}} to="/products"> <span>Products</span></Link>
       </div>
       <div className="sidebar-item">
         <StoreIcon/>
-        <Link to="/vendors"><span>Vendors</span></Link>
+        <Link style={{width:"100%"}} to="/vendors"><span>Vendors</span></Link>
       </div>
       <div className="sidebar-item">
         <ListAltIcon/>
-        <Link to="/orders"><span>Orders</span></Link>
+        <Link style={{width:"100%"}} to="/orders"><span>Orders</span></Link>
       </div>
       <div className="sidebar-item">
         <InventoryIcon/>
-        <Link to="/inventory"><span>Inventory</span></Link>
+        <Link style={{width:"100%"}} to="/inventory"><span>Inventory</span></Link>
       </div>
     </div>
   );
