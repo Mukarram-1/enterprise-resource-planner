@@ -1,55 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './table.css';
 import Sidebar from "./DashBoardSidebar";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
 import VendorModalForm from "./vendormodalform";
-function Employees() {
-  const customers = [
-    {
-      id: '1',
-      name: 'Mukarram Traders',
-      materials: 'Material 1, Material 2',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '2',
-      name: 'Abdullah Traders',
-      materials: 'Material 1, Material 3',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '3',
-      name: 'Usman Traders',
-      materials: 'Material 3, Material 6',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '4',
-      name: 'Nomi Pawa  Traders',
-      materials: 'Material 10, Material 7',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '5',
-      name: 'Zain Traders',
-      materials: 'Material 4, Material 6',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '6',
-      name: 'Goraya Traders',
-      materials: 'Material 7',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    }
-  ];
+
+function Vendors() {
+  const [vendors, setVendors] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -59,11 +17,30 @@ function Employees() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    const fetchVendors = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/getVendors");
+        if (!response.ok) {
+          throw new Error("Failed to fetch vendors");
+        }
+        const data = await response.json();
+        setVendors(data);
+        console.log("Data Read:", data);
+      } catch (error) {
+        console.error("Error fetching vendors:", error);
+      }
+    };
+
+    fetchVendors();
+  }, []);
+
   return (
     <div>
       <Sidebar />
       <div className='main'>
-      <div className="manageheading">
+        <div className="manageheading">
           <h2>Manage Vendors</h2>
           <div className="modalbtn">
             <button onClick={openModal}>Add Vendor</button>
@@ -82,21 +59,21 @@ function Employees() {
             </tr>
           </thead>
           <tbody>
-            {customers.map((customer, index) => (
+            {vendors.map((vendor, index) => (
               <tr key={index}>
-                <td>{customer.id}</td>
-                <td>{customer.name}</td>
-                <td>{customer.materials}</td>
-                <td>{customer.contact}</td>
+                <td>{vendor.id}</td>
+                <td>{vendor.name}</td>
+                <td>{vendor.materials}</td>
+                <td>{vendor.contact}</td>
                 <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>
             ))}
           </tbody>
         </table>
-        </div>
       </div>
+    </div>
   );
 }
 
-export default Employees;
+export default Vendors;

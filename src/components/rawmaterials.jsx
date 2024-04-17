@@ -1,56 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './table.css';
 import Sidebar from "./DashBoardSidebar";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
-import OrderRawMaterialsModalForm from "./oderRawMaterialsModalform";
+import OrderRawMaterialsModalForm from "./orderRawMaterialsModalform";
 
 function RawMaterials() {
-  const customers = [
-    {
-      id: '1',
-      name: 'Mukarram Traders',
-      materials: 'Material 1, Material 2',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '2',
-      name: 'Abdullah Traders',
-      materials: 'Material 1, Material 3',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '3',
-      name: 'Usman Traders',
-      materials: 'Material 3, Material 6',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '4',
-      name: 'Nomi Pawa  Traders',
-      materials: 'Material 10, Material 7',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '5',
-      name: 'Zain Traders',
-      materials: 'Material 4, Material 6',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    },
-    {
-      id: '6',
-      name: 'Goraya Traders',
-      materials: 'Material 7',
-      deliveryDate: '17-April-2024',
-      contact: '0123456789'
-    }
-  ];
+  const [rawMaterials, setRawMaterials] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -60,11 +17,30 @@ function RawMaterials() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    const fetchRawMaterials = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/getRawMaterials");
+        if (!response.ok) {
+          throw new Error("Failed to fetch raw materials");
+        }
+        const data = await response.json();
+        setRawMaterials(data);
+        console.log("Data Read:", data);
+      } catch (error) {
+        console.error("Error fetching raw materials:", error);
+      }
+    };
+
+    fetchRawMaterials();
+  }, []);
+
   return (
     <div>
       <Sidebar />
       <div className='main'>
-      <div className="manageheading">
+        <div className="manageheading">
           <h2>Raw Material Analysis</h2>
           <div className="modalbtn">
             <button onClick={openModal}>Order Raw Materials</button>
@@ -84,20 +60,20 @@ function RawMaterials() {
             </tr>
           </thead>
           <tbody>
-            {customers.map((customer, index) => (
+            {rawMaterials.map((material, index) => (
               <tr key={index}>
-                <td>{customer.id}</td>
-                <td>{customer.name}</td>
-                <td>{customer.materials}</td>
-                <td>{customer.deliveryDate}</td>
-                <td>{customer.contact}</td>
+                <td>{material.id}</td>
+                <td>{material.vendor}</td>
+                <td>{material.materialName}</td>
+                <td>{material.deliveryDate}</td>
+                <td>{material.quantity}</td>
                 <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>
             ))}
           </tbody>
         </table>
-        </div>
+      </div>
     </div>
   );
 }

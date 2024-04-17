@@ -1,51 +1,26 @@
-import React from 'react';
-import './table.css'; // Assume you have a CSS file with the styles provided below
+import React, { useState, useEffect } from 'react';
+import './table.css';
 
 function CustomerTable() {
-  const customers = [
-    {
-      name: 'John Doe',
-      phone: '123-456-7890',
-      clientSince: '2020-01-01',
-      email: 'john@example.com',
-      address: '123 Main Street, City, Country'
-    },
-    {
-      name: 'Abdullah Tahir',
-      phone: '987-654-3210',
-      clientSince: '2019-06-15',
-      email: 'abdullah@example.com',
-      address: '456 Elm Street, Town, Country'
-    },
-    {
-      name: 'Mukarram Ahmad',
-      phone: '987-654-3210',
-      clientSince: '2019-06-15',
-      email: 'mukarram@example.com',
-      address: '456 Elm Street, Town, Country'
-    },
-    {
-      name: 'Usman Ramzan',
-      phone: '987-654-3210',
-      clientSince: '2019-06-15',
-      email: 'Usman@example.com',
-      address: '456 Elm Street, Town, Country'
-    },
-    {
-      name: 'Noman Javed',
-      phone: '987-654-3210',
-      clientSince: '2019-06-15',
-      email: 'nomijaved@example.com',
-      address: '456 Elm Street, Town, Country'
-    },
-    {
-      name: 'Noman Goraya',
-      phone: '987-654-3210',
-      clientSince: '2019-06-15',
-      email: 'goraya@example.com',
-      address: '456 Elm Street, Town, Country'
-    }
-  ];
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/getCustomers'); // Change the URL to match your backend route
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setCustomers(data);
+        console.log('Data Read from Database:', data);
+      } catch (error) {
+        console.error('Error fetching data from API:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array to run effect only once
 
   return (
     <div>
@@ -64,7 +39,7 @@ function CustomerTable() {
             <tr key={index}>
               <td>{customer.name}</td>
               <td>{customer.phone}</td>
-              <td>{customer.clientSince}</td>
+              <td>{customer.client_since}</td>
               <td>{customer.email}</td>
               <td>{customer.address}</td>
             </tr>
