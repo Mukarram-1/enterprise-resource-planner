@@ -1,40 +1,24 @@
 import React, { useState } from 'react';
-import './ModalForm.css'; 
+import './ModalForm.css';
 
-const ModalForm = ({ isOpen, onClose },tablehead1,tablehead2,tablehead3,tablehead4) => {
-  const [formData, setFormData] = useState({
-    id: '',
-    name: '',
-    phone: '',
-    email: '',
-    address: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
+const ModalForm = ({ isOpen, onClose }) => {
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here, for example: send formData to an API
-    console.log(formData);
-    // Close the modal after submission
-    onClose();
-  };
 
+    if (document.getElementById("name").value !== "") {
+      alert("Employee Added");
+    }
+
+  };
   if (!isOpen) return null;
 
   return (
+
     <div className="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} action="http://localhost:4000/addemployee" method="post">
           <div className="form-group">
-            <h2 style={{textAlign:'center'}}>Add Employee</h2>
+            <h2 style={{ textAlign: 'center' }}>Add Employee</h2>
           </div>
           <div className="form-group">
             <label htmlFor="name">Name:</label>
@@ -42,8 +26,7 @@ const ModalForm = ({ isOpen, onClose },tablehead1,tablehead2,tablehead3,tablehea
               type="text"
               id="name"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -52,8 +35,7 @@ const ModalForm = ({ isOpen, onClose },tablehead1,tablehead2,tablehead3,tablehea
               type="text"
               id="phone"
               name="phone"
-              value={formData.phone}
-              onChange={handleChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -62,8 +44,7 @@ const ModalForm = ({ isOpen, onClose },tablehead1,tablehead2,tablehead3,tablehea
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -71,8 +52,7 @@ const ModalForm = ({ isOpen, onClose },tablehead1,tablehead2,tablehead3,tablehea
             <textarea
               id="address"
               name="address"
-              value={formData.address}
-              onChange={handleChange}
+              required
             ></textarea>
           </div>
           <button type="submit">Submit</button>
