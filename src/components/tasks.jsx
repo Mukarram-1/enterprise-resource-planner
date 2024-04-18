@@ -36,6 +36,22 @@ function Tasks() {
     fetchTasks();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:4000/deletetask/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+      } else {
+        console.error('Failed to delete vendor from the database');
+      }
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+    }
+  };
+
   return (
     <div>
       <Sidebar />
@@ -68,7 +84,7 @@ function Tasks() {
                 <td style={{maxWidth:'400px'}}>{task.description}</td>
                 <td>{task.status}</td>
                 <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
-                <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
+                <td><Link><DeleteForeverIcon onClick={()=>handleDelete(task.id)} style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>
             ))}
           </tbody>

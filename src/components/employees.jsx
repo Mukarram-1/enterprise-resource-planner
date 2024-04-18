@@ -36,6 +36,22 @@ function Employees() {
     fetchEmployees();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:4000/deleteemployee/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setEmployees((prevEmployees) => prevEmployees.filter((employee) => employee.id !== id));
+      } else {
+        console.error('Failed to delete employee from the database');
+      }
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+    }
+  };
+
   return (
     <div>
       <Sidebar />
@@ -75,7 +91,7 @@ function Employees() {
                   </td>
                   <td>
                     <Link>
-                      <DeleteForeverIcon
+                      <DeleteForeverIcon onClick={() => handleDelete(employee.id)}
                         style={{ fontSize: "20px", color: "red" }}
                       />
                     </Link>

@@ -36,6 +36,23 @@ function Vendors() {
     fetchVendors();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:4000/deletevendor/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setVendors((prevVendors) => prevVendors.filter((vendor) => vendor.id !== id));
+      } else {
+        console.error('Failed to delete vendor from the database');
+      }
+    } catch (error) {
+      console.error('Error deleting employee:', error);
+    }
+  };
+
+
   return (
     <div>
       <Sidebar />
@@ -66,7 +83,7 @@ function Vendors() {
                 <td>{vendor.materials}</td>
                 <td>{vendor.contact}</td>
                 <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
-                <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
+                <td><Link><DeleteForeverIcon onClick={()=>handleDelete(vendor.id)} style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>
             ))}
           </tbody>
