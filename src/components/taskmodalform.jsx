@@ -1,29 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ModalForm.css'; 
 
 const TaskModalForm = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    id: '',
-    name: '',
-    assignedto: '',
-    description: '',
-    status: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+  const [employeeNames, setEmployeeNames] = useState([]);
+  useEffect(() => {
+    const fetchEmployeeNames = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/getemployees');
+        if (response.ok) {
+          const data = await response.json();
+          // Extracting names from the received data and setting the state
+          const names = data.map(employee => employee.name);
+          setEmployeeNames(names);
+        } else {
+          console.error('Failed to fetch employee names');
+        }
+      } catch (error) {
+        console.error('Error fetching employee names:', error);
+      }
+    };
+    fetchEmployeeNames();
+  }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here, for example: send formData to an API
-    console.log(formData);
-    // Close the modal after submission
-    onClose();
+    if(document.getElementById("name").value!=="")
+    {
+      alert("Task Added");
+    }
+    console.log("Task added");
   };
 
   if (!isOpen) return null;
@@ -32,48 +36,47 @@ const TaskModalForm = ({ isOpen, onClose }) => {
     <div className="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
+        <form onSubmit={handleSubmit} action="http://localhost:4000/addtask" method="post">
           <div className="form-group">
             <h2 style={{textAlign:'center'}}>Add New Task</h2>
           </div>
+          <div className="form-group">
             <label htmlFor="name">Name:</label>
             <input
               type="text"
               id="name"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="assignedto">Assigned To:</label>
-            <input
-              type="text"
-              id="assignedto"
-              name="assignedto"
-              value={formData.assignedto}
-              onChange={handleChange}
-            />
+            <label htmlFor="assignedTo">Assigned To:</label>
+            <select
+              id="assignedTo"
+              name="assignedTo"
+            >
+              <option value="">Select Employee...</option>
+              {employeeNames.map((name, index) => (
+                <option key={index} value={name}>{name}</option>
+              ))}
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="description">Description:</label>
             <textarea
               id="description"
               name="description"
-              value={formData.description}
-              onChange={handleChange}
             ></textarea>
           </div>
           <div className="form-group">
             <label htmlFor="status">Status:</label>
-            <input
-              type="text"
+            <select
               id="status"
               name="status"
-              value={formData.status}
-              onChange={handleChange}
-            />
+            >
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Pending">Pending</option>
+            </select>
           </div>
           <button type="submit">Submit</button>
         </form>
