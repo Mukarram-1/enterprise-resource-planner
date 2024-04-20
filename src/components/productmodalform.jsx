@@ -2,28 +2,11 @@ import React, { useState } from 'react';
 import './ModalForm.css'; 
 
 const ProductModalForm = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    id: '',
-    name: '',
-    reqMaterial: '',
-    vendors: '',
-    estcost: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here, for example: send formData to an API
-    console.log(formData);
-    // Close the modal after submission
-    onClose();
+    if (document.getElementById("name").value !== "") {
+      alert("New Product Added");
+    }
+
   };
 
   if (!isOpen) return null;
@@ -32,7 +15,7 @@ const ProductModalForm = ({ isOpen, onClose }) => {
     <div className="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} action="http://localhost:4000/addproduct" method="post">
           <div className="form-group">
           <div className="form-group">
             <h2 style={{textAlign:'center'}}>Add New Product</h2>
@@ -42,38 +25,35 @@ const ProductModalForm = ({ isOpen, onClose }) => {
               type="text"
               id="name"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
+              required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="reqMaterial">Required Materials:</label>
+            <label htmlFor="quantity">Quantity:</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="cost">Cost:</label>
+            <input
+              type="number"
+              id="cost"
+              name="cost"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="category">Category:</label>
             <input
               type="text"
-              id="reqMaterial"
-              name="reqMaterial"
-              value={formData.reqMaterial}
-              onChange={handleChange}
+              id="category"
+              name="category"
+              required
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="vendors">Vendors:</label>
-            <input
-              type="text"
-              id="vendors"
-              name="vendors"
-              value={formData.vendors}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="estcost">Estimated Cost:</label>
-            <textarea
-              id="estcost"
-              name="estcost"
-              value={formData.estcost}
-              onChange={handleChange}
-            ></textarea>
           </div>
           <button type="submit">Submit</button>
         </form>

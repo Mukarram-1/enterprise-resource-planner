@@ -5,10 +5,20 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
 import TaskModalForm from "./taskmodalform";
-
+import UpdateTasksModal from "./updatetasks";
 function Tasks() {
   const [tasks, setTasks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
+
+  const openaddModal = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const closeaddModal = () => {
+    setIsAddModalOpen(false);
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -52,6 +62,11 @@ function Tasks() {
     }
   };
 
+  const handleEdit = (task) => {
+    setSelectedTask(task); // Set the selected employee when edit icon is clicked
+    openModal(); // Open the modal
+  };
+
   return (
     <div>
       <Sidebar />
@@ -59,8 +74,8 @@ function Tasks() {
         <div className="manageheading">
           <h2>Manage Tasks</h2>
           <div className="modalbtn">
-            <button onClick={openModal}>Add Task</button>
-            <TaskModalForm isOpen={isModalOpen} onClose={closeModal} />
+            <button onClick={openaddModal}>Add Task</button>
+            <TaskModalForm isOpen={isAddModalOpen} onClose={closeaddModal} />
           </div>
         </div>
         <table className="table">
@@ -83,13 +98,19 @@ function Tasks() {
                 <td>{task.assigned_to}</td>
                 <td style={{maxWidth:'400px'}}>{task.description}</td>
                 <td>{task.status}</td>
-                <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
+                <td><Link><EditIcon onClick={() => handleEdit(task)}
+                 style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon onClick={()=>handleDelete(task.id)} style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <UpdateTasksModal // Render the UpdateEmployeeModal component
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        task={selectedTask} // Pass the selected employee data to the modal
+      />
     </div>
   );
 }

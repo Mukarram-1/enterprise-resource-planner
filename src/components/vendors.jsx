@@ -5,10 +5,21 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
 import VendorModalForm from "./vendormodalform";
+import UpdateVendorModal from "./updatevendor";
 
 function Vendors() {
   const [vendors, setVendors] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedVendor, setSelectedVendor] = useState(null);
+
+  const openaddModal = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const closeaddModal = () => {
+    setIsAddModalOpen(false);
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -52,6 +63,10 @@ function Vendors() {
     }
   };
 
+  const handleEdit = (vendor) => {
+    setSelectedVendor(vendor); // Set the selected employee when edit icon is clicked
+    openModal(); // Open the modal
+  };
 
   return (
     <div>
@@ -60,8 +75,8 @@ function Vendors() {
         <div className="manageheading">
           <h2>Manage Vendors</h2>
           <div className="modalbtn">
-            <button onClick={openModal}>Add Vendor</button>
-            <VendorModalForm isOpen={isModalOpen} onClose={closeModal} />
+            <button onClick={openaddModal}>Add Vendor</button>
+            <VendorModalForm isOpen={isAddModalOpen} onClose={closeaddModal} />
           </div>
         </div>
         <table className="table">
@@ -82,13 +97,19 @@ function Vendors() {
                 <td>{vendor.name}</td>
                 <td>{vendor.materials}</td>
                 <td>{vendor.contact}</td>
-                <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
+                <td><Link><EditIcon onClick={() => handleEdit(vendor)}
+                style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon onClick={()=>handleDelete(vendor.id)} style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <UpdateVendorModal // Render the UpdateEmployeeModal component
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        vendor={selectedVendor} // Pass the selected employee data to the modal
+      />
     </div>
   );
 }

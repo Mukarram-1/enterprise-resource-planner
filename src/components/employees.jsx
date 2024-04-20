@@ -5,10 +5,21 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import ModalForm from "./employeeform";
+import UpdateEmployeeModal from "./updateemployeeform";
 
 function Employees() {
   const [employees, setEmployees] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null); // State to track the selected employee for editing
+
+  const openaddModal = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const closeaddModal = () => {
+    setIsAddModalOpen(false);
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -16,6 +27,7 @@ function Employees() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setSelectedEmployee(null); // Reset selected employee when modal closes
   };
 
   useEffect(() => {
@@ -52,6 +64,11 @@ function Employees() {
     }
   };
 
+  const handleEdit = (employee) => {
+    setSelectedEmployee(employee); // Set the selected employee when edit icon is clicked
+    openModal(); // Open the modal
+  };
+
   return (
     <div>
       <Sidebar />
@@ -59,8 +76,8 @@ function Employees() {
         <div className="manageheading">
           <h2>Manage Employees</h2>
           <div className="modalbtn">
-            <button onClick={openModal}>Add Employee</button>
-            <ModalForm isOpen={isModalOpen} onClose={closeModal} />
+            <button onClick={openaddModal}>Add Employee</button>
+            <ModalForm isOpen={isAddModalOpen} onClose={closeaddModal} />
           </div>
         </div>
         <div className="tableportion">
@@ -86,7 +103,10 @@ function Employees() {
                   <td>{employee.address}</td>
                   <td>
                     <Link>
-                      <EditIcon style={{ fontSize: "20px", color: "green" }} />
+                      <EditIcon
+                        onClick={() => handleEdit(employee)} // Pass the employee data to handleEdit
+                        style={{ fontSize: "20px", color: "green" }}
+                      />
                     </Link>
                   </td>
                   <td>
@@ -102,6 +122,11 @@ function Employees() {
           </table>
         </div>
       </div>
+      <UpdateEmployeeModal // Render the UpdateEmployeeModal component
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        employee={selectedEmployee} // Pass the selected employee data to the modal
+      />
     </div>
   );
 }
