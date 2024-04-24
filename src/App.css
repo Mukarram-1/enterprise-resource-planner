@@ -158,3 +158,18 @@ a {
   height: 80vh;
 }
 /* ------------------------ */
+
+/* Pie Chart */
+.pie-chart {
+  display: flex;
+  gap: 20%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.pie-chart .chart {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  width: 30%;
+  height: 30%;
+}

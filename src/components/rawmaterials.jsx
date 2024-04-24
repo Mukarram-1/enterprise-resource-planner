@@ -50,23 +50,21 @@ function RawMaterials() {
         <table className="table">
           <thead>
             <tr>
-              <th>Order ID</th>
-              <th>Vendor</th>
-              <th>Material Name</th>
-              <th>Estimated Delivery Date</th>
+              <th>ID</th>
+              <th>Name</th>
               <th>Quantity</th>
-              <th></th>
-              <th></th>
+              <th>Cost</th>
+              <th>Category</th>
             </tr>
           </thead>
           <tbody>
             {rawMaterials.map((material, index) => (
               <tr key={index}>
                 <td>{material.id}</td>
-                <td>{material.vendor}</td>
-                <td>{material.materialName}</td>
-                <td>{material.deliveryDate}</td>
+                <td>{material.name}</td>
                 <td>{material.quantity}</td>
+                <td>{material.cost}</td>
+                <td>{material.category}</td>
                 <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>

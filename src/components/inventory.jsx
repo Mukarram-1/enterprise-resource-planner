@@ -4,9 +4,12 @@ import Sidebar from './DashBoardSidebar';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
+import PieChart from "./pieChart";
 
 function Inventory() {
   const [items, setItems] = useState([]);
+  const [raw_materials, setRawMaterials] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchInventory = async () => {
@@ -18,7 +21,13 @@ function Inventory() {
         const data = await response.json();
         setItems(data);
         console.log('Data Read:', data);
-      } catch (error) {
+
+        const rawMaterials = data.filter(item => item.type === 'Raw Material');
+        const products = data.filter(item => item.type === 'Product');
+        setRawMaterials(rawMaterials);
+        setProducts(products);
+      }
+      catch (error) {
         console.error('Error fetching inventory:', error);
       }
     };
@@ -31,40 +40,36 @@ function Inventory() {
       <Sidebar />
       <div className="main">
         <h2>Manage Inventory</h2>
+        <div className="pie-chart">
+          <div className='chart'>
+            <h3>Raw Material Quantity Distribution</h3>
+            <PieChart rawMaterials={raw_materials} />
+          </div>
+          <div className='chart'>
+            <h3>Products Quantity Distribution</h3>
+            <PieChart rawMaterials={products} />
+          </div>
+        </div>
         <table className="table">
           <thead>
             <tr>
-              <th>Item Code</th>
+              <th>Item ID</th>
               <th>Item Name</th>
-              <th>Quantity on Hand</th>
-              <th>Reorder Level</th>
+              <th>Quantity</th>
               <th>Unit Cost</th>
-              <th>Total Value</th>
-              <th>Last Updated</th>
-              <th></th>
-              <th></th>
+              <th>Category</th>
+              <th>Type</th>
             </tr>
           </thead>
           <tbody>
             {items.map((item, index) => (
               <tr key={index}>
-                <td>{item.code}</td>
+                <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.quantity}</td>
-                <td>{item.reorderLevel}</td>
                 <td>{item.cost}</td>
-                <td>{item.value}</td>
-                <td>{item.lastUpdated}</td>
-                <td>
-                  <Link>
-                    <EditIcon style={{ fontSize: '20px', color: 'green' }} />
-                  </Link>
-                </td>
-                <td>
-                  <Link>
-                    <DeleteForeverIcon style={{ fontSize: '20px', color: 'red' }} />
-                  </Link>
-                </td>
+                <td>{item.category}</td>
+                <td>{item.type}</td>
               </tr>
             ))}
           </tbody>
