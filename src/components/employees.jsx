@@ -6,6 +6,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import ModalForm from "./employeeform";
 import UpdateEmployeeModal from "./updateemployeeform";
+import toast, { Toaster } from 'react-hot-toast';
 
 function Employees() {
   const [employees, setEmployees] = useState([]);
@@ -56,8 +57,10 @@ function Employees() {
 
       if (response.ok) {
         setEmployees((prevEmployees) => prevEmployees.filter((employee) => employee.id !== id));
+        toast.success('Employee deleted successfully!');
       } else {
         console.error('Failed to delete employee from the database');
+        toast.error('Could not delete employee!');
       }
     } catch (error) {
       console.error('Error deleting employee:', error);
@@ -113,6 +116,10 @@ function Employees() {
                     <Link>
                       <DeleteForeverIcon onClick={() => handleDelete(employee.id)}
                         style={{ fontSize: "20px", color: "red" }}
+                      />
+                      <Toaster
+                        position="top-center"
+                        reverseOrder={false}
                       />
                     </Link>
                   </td>

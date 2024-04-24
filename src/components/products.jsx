@@ -6,7 +6,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
 import ProductModalForm from './productmodalform';
 import UpdateProductsModal from './updateproducts';
-
+import toast, { Toaster } from 'react-hot-toast';
 function Products() {
   const [products, setProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,8 +55,10 @@ function Products() {
 
       if (response.ok) {
         setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+        toast.success('Product deleted successfully!');
       } else {
         console.error('Failed to delete product from the database');
+        toast.error('Product could not delete.');
       }
     } catch (error) {
       console.error('Error deleting product:', error);
@@ -100,17 +102,22 @@ function Products() {
                 <td>{product.cost}</td>
                 <td>{product.category}</td>
                 <td><Link><EditIcon onClick={() => handleEdit(product)}
-                 style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
-                <td><Link><DeleteForeverIcon onClick={()=>handleDelete(product.id)} style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
+                  style={{ fontSize: "20px", color: 'green' }} /></Link></td>
+                <td><Link><DeleteForeverIcon onClick={() => handleDelete(product.id)} style={{ fontSize: "20px", color: 'red' }} />
+                  <Toaster
+                    position="top-center"
+                    reverseOrder={false}
+                  />
+                </Link></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <UpdateProductsModal 
+      <UpdateProductsModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        product={selectedProduct} 
+        product={selectedProduct}
       />
     </div>
   );

@@ -6,6 +6,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
 import TaskModalForm from "./taskmodalform";
 import UpdateTasksModal from "./updatetasks";
+import toast, { Toaster } from 'react-hot-toast';
 function Tasks() {
   const [tasks, setTasks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,8 +55,10 @@ function Tasks() {
 
       if (response.ok) {
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+        toast.success('Task deleted successfully!');
       } else {
         console.error('Failed to delete vendor from the database');
+        toast.error('Task could not delete.');
       }
     } catch (error) {
       console.error('Error deleting employee:', error);
@@ -96,11 +99,16 @@ function Tasks() {
                 <td>{task.id}</td>
                 <td>{task.task_name}</td>
                 <td>{task.assigned_to}</td>
-                <td style={{maxWidth:'400px'}}>{task.description}</td>
+                <td style={{ maxWidth: '400px' }}>{task.description}</td>
                 <td>{task.status}</td>
                 <td><Link><EditIcon onClick={() => handleEdit(task)}
-                 style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
-                <td><Link><DeleteForeverIcon onClick={()=>handleDelete(task.id)} style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
+                  style={{ fontSize: "20px", color: 'green' }} /></Link></td>
+                <td><Link><DeleteForeverIcon onClick={() => handleDelete(task.id)} style={{ fontSize: "20px", color: 'red' }} />
+                  <Toaster
+                    position="top-center"
+                    reverseOrder={false}
+                  />
+                </Link></td>
               </tr>
             ))}
           </tbody>

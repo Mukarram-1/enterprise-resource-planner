@@ -6,6 +6,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
 import VendorModalForm from "./vendormodalform";
 import UpdateVendorModal from "./updatevendor";
+import toast, { Toaster } from 'react-hot-toast';
 
 function Vendors() {
   const [vendors, setVendors] = useState([]);
@@ -55,8 +56,10 @@ function Vendors() {
 
       if (response.ok) {
         setVendors((prevVendors) => prevVendors.filter((vendor) => vendor.id !== id));
+        toast.success('Vendor deleted successfully!');
       } else {
         console.error('Failed to delete vendor from the database');
+        toast.error('Vendor could not delete.');
       }
     } catch (error) {
       console.error('Error deleting employee:', error);
@@ -98,8 +101,13 @@ function Vendors() {
                 <td>{vendor.materials}</td>
                 <td>{vendor.contact}</td>
                 <td><Link><EditIcon onClick={() => handleEdit(vendor)}
-                style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
-                <td><Link><DeleteForeverIcon onClick={()=>handleDelete(vendor.id)} style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
+                  style={{ fontSize: "20px", color: 'green' }} /></Link></td>
+                <td><Link><DeleteForeverIcon onClick={() => handleDelete(vendor.id)} style={{ fontSize: "20px", color: 'red' }} />
+                  <Toaster
+                    position="top-center"
+                    reverseOrder={false}
+                  />
+                </Link></td>
               </tr>
             ))}
           </tbody>
