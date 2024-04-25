@@ -53,8 +53,8 @@ function RawMaterials() {
               <th>ID</th>
               <th>Name</th>
               <th>Quantity</th>
-              <th>Cost</th>
-              <th>Category</th>
+              <th>Cost Per Unit</th>
+              <th>Total Cost</th>
             </tr>
           </thead>
           <tbody>
@@ -64,7 +64,7 @@ function RawMaterials() {
                 <td>{material.name}</td>
                 <td>{material.quantity}</td>
                 <td>{material.cost}</td>
-                <td>{material.category}</td>
+                <td>{material.totalcost}</td>
                 {/* <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td> */}
               </tr>

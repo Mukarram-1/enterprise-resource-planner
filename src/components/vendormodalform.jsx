@@ -7,7 +7,7 @@ const VendorModalForm = ({ isOpen, onClose }) => {
     {
       alert("Vendor Added");
     }
-    console.log("Vendor data send to backend");
+    // console.log("Vendor data send to backend");
   };
 
   if (!isOpen) return null;
@@ -38,6 +38,17 @@ const VendorModalForm = ({ isOpen, onClose }) => {
               required
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="unitCost">Cost per unit:</label>
+            <input
+              type="number"
+              id="unitCost"
+              name="unitCost"
+              required
+            />
+          </div>
+          
           <div className="form-group">
             <label htmlFor="contact">Contact:</label>
             <input
