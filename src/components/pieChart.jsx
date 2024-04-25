@@ -5,9 +5,14 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function PieChart({ rawMaterials }) {
+  console.log("Raw materials",rawMaterials);
+  if (!rawMaterials || !Array.isArray(rawMaterials) || rawMaterials.length === 0) {
+    return <div>No data available</div>;
+  }
+
   // Extracting data for the chart
-  const materialNames = rawMaterials.map(material => material.name);
-  const quantities = rawMaterials.map(material => material.quantity);
+  const materialNames = rawMaterials.map(material => material["Item Name"]); 
+  const quantities = rawMaterials.map(material => material["Quantity"]);
 
   // Chart data
   const data = {

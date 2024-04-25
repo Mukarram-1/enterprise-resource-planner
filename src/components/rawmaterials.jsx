@@ -65,8 +65,8 @@ function RawMaterials() {
                 <td>{material.quantity}</td>
                 <td>{material.cost}</td>
                 <td>{material.category}</td>
-                <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
-                <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
+                {/* <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
+                <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td> */}
               </tr>
             ))}
           </tbody>

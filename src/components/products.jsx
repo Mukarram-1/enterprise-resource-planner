@@ -49,7 +49,7 @@ function Products() {
 
   const handleDelete = async (id, name) => {
     try {
-      const response = await fetch(`http://localhost:4000/deleteproduct/${id}/${name}`, {
+      const response = await fetch(`http://localhost:4000/deleteproduct/${id}`, {
         method: 'DELETE',
       });
 
@@ -103,7 +103,7 @@ function Products() {
                 <td>{product.category}</td>
                 <td><Link><EditIcon onClick={() => handleEdit(product)}
                   style={{ fontSize: "20px", color: 'green' }} /></Link></td>
-                <td><Link><DeleteForeverIcon onClick={() => handleDelete(product.id, product.name)} style={{ fontSize: "20px", color: 'red' }} />
+                <td><Link><DeleteForeverIcon onClick={() => handleDelete(product.id)} style={{ fontSize: "20px", color: 'red' }} />
                   <Toaster
                     position="top-center"
                     reverseOrder={false}
