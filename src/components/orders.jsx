@@ -37,14 +37,14 @@ function Orders() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Customer ID</th>
+              <th>Vendor ID</th>
               <th>Order Date</th>
               <th>Order Status</th>
               <th>Amount</th>
               <th>Shipping Address</th>
               <th>Payment Status</th>
               <th>Delivery Date</th>
-              <th>Comments</th>
+              <th>Order Details</th>
               <th></th>
               <th></th>
             </tr>
@@ -53,14 +53,14 @@ function Orders() {
             {orders.map((order, index) => (
               <tr key={index}>
                 <td>{order.id}</td>
-                <td>{order.customer_id}</td>
+                <td>{order.vendor_id}</td>
                 <td>{order.order_date}</td>
                 <td>{order.order_status}</td>
                 <td>{order.amount}</td>
                 <td>{order.shipping_address}</td>
                 <td>{order.payment_status}</td>
                 <td>{order.delivery_date}</td>
-                <td>{order.comments}</td>
+                <td>{order.order_details}</td>
                 <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>

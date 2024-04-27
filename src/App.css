@@ -134,12 +134,16 @@ a {
   font-size: 13px;
   text-decoration: underline;
 }
+.main-signin .form form select,
 .main-signin .form form input {
-  height: 37px;
+  height: 10%;
   width: 80%;
   border: 1px solid rgb(182, 182, 182, 0.3);
   border-radius: 5px;
   padding-left: 10px;
+}
+.main-signin .form form select {
+  margin-bottom: 5%;
 }
 @media (max-width: 768px) {
   .main-signin .form {
