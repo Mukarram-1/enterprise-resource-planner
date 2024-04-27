@@ -4,10 +4,23 @@ import Sidebar from "./DashBoardSidebar";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
+import UpdateOrdersModal from "./updateorders";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -26,6 +39,11 @@ function Orders() {
     fetchOrders();
   }, []);
 
+  const handleEdit = (order) => {
+    setSelectedOrder(order); // Set the selected employee when edit icon is clicked
+    openModal(); // Open the modal
+  };
+
   return (
     <div>
       <Sidebar />
@@ -36,16 +54,14 @@ function Orders() {
         <table className="table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Vendor ID</th>
-              <th>Order Date</th>
-              <th>Order Status</th>
-              <th>Amount</th>
-              <th>Shipping Address</th>
+              <th>Order ID</th>
+              <th>Vendor</th>
+              <th>Material</th>
+              <th>Quantity</th>
+              <th>Total Amount</th>
+              <th>Shipping Status</th>
               <th>Payment Status</th>
-              <th>Delivery Date</th>
-              <th>Order Details</th>
-              <th></th>
+              <th>Order Date</th>
               <th></th>
             </tr>
           </thead>
@@ -53,21 +69,26 @@ function Orders() {
             {orders.map((order, index) => (
               <tr key={index}>
                 <td>{order.id}</td>
-                <td>{order.vendor_id}</td>
-                <td>{order.order_date}</td>
-                <td>{order.order_status}</td>
+                <td>{order.vendor_name}</td>
+                <td>{order.material}</td>
+                <td>{order.quantity}</td>
                 <td>{order.amount}</td>
-                <td>{order.shipping_address}</td>
+                <td>{order.shipping_status}</td>
                 <td>{order.payment_status}</td>
-                <td>{order.delivery_date}</td>
-                <td>{order.order_details}</td>
-                <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
-                <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
+                <td>{order.order_date}</td>
+                {/* <td>{order.order_details}</td> */}
+                <td><Link><EditIcon onClick={() => handleEdit(order)} style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
+                {/* <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td> */}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <UpdateOrdersModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        order={selectedOrder}
+      />
     </div>
   );
 }
