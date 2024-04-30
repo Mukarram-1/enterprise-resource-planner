@@ -1,14 +1,50 @@
-import React, { useState } from 'react';
-import Sidebar from './DashBoardSidebar';
+import React, { useState, useEffect } from 'react';
 
 export default function Signin() {
   const [ID, setID] = useState('1');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [userRole, setUserRole] = useState('');
+
+  useEffect(() => {
+    resetUserRoles();
+  }, []);
+
+  const resetUserRoles = async () => {
+    try {
+      const response = await fetch('http://localhost:4000/resetRoles', {
+        method: 'POST',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to reset user roles');
+      }
+    } catch (error) {
+      console.error('Error resetting user roles:', error);
+    }
+  };
+
+  const updateUserRole = async (role) => {
+    try {
+      const response = await fetch('http://localhost:4000/setRole', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, role })
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update user role');
+      }
+    } catch (error) {
+      console.error('Error updating user role:', error);
+      // Handle error as needed
+    }
+  };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+
+    
+
     try {
       const response = await fetch('http://localhost:4000/loginAuthentication', {
         method: 'POST',
@@ -23,14 +59,13 @@ export default function Signin() {
       }
 
       const userData = await response.json();
-      console.log(userData)
 
       if (username === userData.username && password === userData.password && ID === '1') {
-        setUserRole(userData.username);
+        updateUserRole(true);
         window.location.href = '/dashboard';
       }
       else if (username === userData.username && password === userData.password && ID === '2') {
-        setUserRole(userData.username);
+        updateUserRole(true);
         window.location.href = '/dashboard';
       }
       else {
@@ -75,7 +110,6 @@ export default function Signin() {
           </div>
         </form>
       </div>
-      {userRole && <Sidebar role={userRole} />}
     </div>
   );
 }
