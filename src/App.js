@@ -9,6 +9,9 @@ import Inventory from './components/inventory';
 import Orders from './components/orders';
 import RawMaterials from './components/rawmaterials';
 import Signin from './components/signin'
+import ProductRating from './components/ProductRating';
+import RateProduct from './components/RateProduct';
+
 
 function App() {
   return (
@@ -23,6 +26,8 @@ function App() {
         <Route path="/inventory" element={<Inventory/>} />
         <Route path="/orders" element={<Orders/>} />
         <Route path="/rawmaterials" element={<RawMaterials/>} />
+        <Route path="/ProductRating" element={<ProductRating/>} />
+        <Route path="/RateProduct" element={<RateProduct/>} />
       </Routes>
     </div>
   );

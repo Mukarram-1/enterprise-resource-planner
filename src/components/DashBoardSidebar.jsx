@@ -8,6 +8,8 @@ import StoreIcon from '@mui/icons-material/Store';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import CategoryIcon from '@mui/icons-material/Category';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import StarIcon from '@mui/icons-material/Star';
 
 export default function Sidebar() {
   const [username, setUsername] = useState('');
@@ -78,6 +80,14 @@ export default function Sidebar() {
       <div className="sidebar-item">
         <InventoryIcon/>
         <Link style={{width:"100%"}} to="/inventory"><span>Inventory</span></Link>
+      </div>
+      <div className="sidebar-item">
+        <ThumbUpOffAltIcon/>
+        <Link style={{width:"100%"}} to="/ProductRating"><span>Product Rating</span></Link>
+      </div>
+      <div className="sidebar-item">
+        <StarIcon/>
+        <Link style={{width:"100%"}} to="/RateProduct"><span>Rate Product</span></Link>
       </div>
     </div>
   );
