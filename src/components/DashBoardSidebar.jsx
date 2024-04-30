@@ -41,10 +41,12 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
      <h2 style={{textAlign:"center"}}>ERP</h2>
-      <div className="sidebar-item">
+      {username === 'admin' && (
+        <div className="sidebar-item">
         <DashboardIcon/>
         <Link style={{width:"100%"}} to="/dashboard"><span>Dashboard</span></Link>
       </div>
+      )}
       {username === 'admin' && (
         <div className="sidebar-item">
           <PersonIcon/>
