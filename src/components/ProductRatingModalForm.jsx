@@ -48,7 +48,7 @@ const ProductRatingModalForm = ({ isOpen, onClose }) => {
                     //   console.log("Product Rating Added Successfully!");
                     // Additional logic if needed after successful submission
                     alert("Product Rating Added Successfully!")
-                    window.location.href = '/ProductRating';
+                    window.location.href = '/RateProduct';
                 } else {
                     console.error("Failed to rate product");
                 }

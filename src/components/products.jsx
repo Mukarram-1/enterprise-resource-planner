@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ProductModalForm from './productmodalform';
 import UpdateProductsModal from './updateproducts';
 import toast, { Toaster } from 'react-hot-toast';
+
 function Products() {
   const [products, setProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
