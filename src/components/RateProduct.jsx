@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './table.css';
-import Sidebar from "./DashBoardSidebar";
 import ProductRatingModalForm from './ProductRatingModalForm';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { Link } from 'react-router-dom';
+import StarIcon from '@mui/icons-material/Star';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import RatingStars from './ratingStar';
 
 function RateProduct() {
 const [products, setProducts] = useState([]);
@@ -39,12 +41,13 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div>
-      <Sidebar />
-      <div className='main'>
-      <div className="manageheading">
+        <div className='rate-main'>
+        <div className="heading">
+          <StarIcon  style={{ fontSize: "35px" }}/>
           <h2>Rate Product</h2>
-          <div className="modalbtn">
+          <div className="btn">
             <button onClick={openModal}>Rate Product</button>
+            <Link to='/'><ExitToAppIcon  style={{ marginLeft: '30%', fontSize: "35px", color: '#1a16f3' }}/></Link>
             <ProductRatingModalForm isOpen={isModalOpen} onClose={closeModal} />
           </div>
         </div>
@@ -63,7 +66,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
               <tr key={product.id}>
                 <td>{product.product_id}</td>
                 <td>{product.product_name}</td>
-                <td>{product.rating}</td>
+                <td><RatingStars rating={product.rating}/></td>
                 <td><Link><EditIcon style={{ fontSize: "20px" ,color:'green'}}/></Link></td>
                 <td><Link><DeleteForeverIcon style={{ fontSize: "20px" ,color:'red'}}/></Link></td>
               </tr>

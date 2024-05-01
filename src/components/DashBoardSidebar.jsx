@@ -8,8 +8,8 @@ import StoreIcon from '@mui/icons-material/Store';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import CategoryIcon from '@mui/icons-material/Category';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import StarIcon from '@mui/icons-material/Star';
 
 export default function Sidebar() {
   const [username, setUsername] = useState('');
@@ -35,8 +35,7 @@ export default function Sidebar() {
       setUsername(userData.username);
     })
     .catch(error => {
-      console.error('Error signing in:', error);
-      alert('Error signing in. Please try again.');
+      console.error('Loading...');
     });
   };
 
@@ -44,16 +43,16 @@ export default function Sidebar() {
     <div className="sidebar">
      <h2 style={{textAlign:"center"}}>ERP</h2>
       {username === 'admin' && (
-        <div className="sidebar-item">
-        <DashboardIcon/>
-        <Link style={{width:"100%"}} to="/dashboard"><span>Dashboard</span></Link>
-      </div>
-      )}
-      {username === 'admin' && (
-        <div className="sidebar-item">
-          <PersonIcon/>
-          <Link style={{width:"100%"}} to="/employees"><span>Employees</span></Link>
-        </div>
+        <>
+          <div className="sidebar-item">
+          <DashboardIcon/>
+          <Link style={{width:"100%"}} to="/dashboard"><span>Dashboard</span></Link>
+          </div>
+          <div className="sidebar-item">
+            <PersonIcon/>
+            <Link style={{width:"100%"}} to="/employees"><span>Employees</span></Link>
+          </div>
+        </>
       )}
       <div className="sidebar-item">
         <AssignmentIcon/>
@@ -85,9 +84,9 @@ export default function Sidebar() {
         <ThumbUpOffAltIcon/>
         <Link style={{width:"100%"}} to="/ProductRating"><span>Product Rating</span></Link>
       </div>
-      <div className="sidebar-item">
-        <StarIcon/>
-        <Link style={{width:"100%"}} to="/RateProduct"><span>Rate Product</span></Link>
+      <div className="sidebar-item" style={{width:"90%", bottom:'0', position:'absolute'}}>
+        <ExitToAppIcon/>
+        <Link style={{width:"100%"}} to="/"><span>Sign out</span></Link>
       </div>
     </div>
   );

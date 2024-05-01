@@ -36,7 +36,6 @@ export default function Signin() {
       }
     } catch (error) {
       console.error('Error updating user role:', error);
-      // Handle error as needed
     }
   };
 
@@ -60,13 +59,16 @@ export default function Signin() {
 
       const userData = await response.json();
 
-      if (username === userData.username && password === userData.password && ID === '1') {
+      if ((username === userData.username && password === userData.password && ID === '1') ||
+          (username === userData.username && password === userData.password && ID === '2'))
+      {
         updateUserRole(true);
         window.location.href = '/dashboard';
       }
-      else if (username === userData.username && password === userData.password && ID === '2') {
+      else if((username === userData.username && password === userData.password && ID === '3'))
+      {
         updateUserRole(true);
-        window.location.href = '/dashboard';
+        window.location.href = '/RateProduct'; 
       }
       else {
         alert('Invalid username or password');
@@ -87,6 +89,7 @@ export default function Signin() {
             <select placeholder='Login as' id="ID" value={ID} onChange={(e) => setID(e.target.value)}>
               <option value="1">Admin</option>
               <option value="2">Manager</option>
+              <option value="3">Quality Analyst</option>
             </select>
             <input
               className='sui-input'

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './table.css';
 import Sidebar from "./DashBoardSidebar";
+import RatingStars from './ratingStar';
+
 function ProductRating() {
 const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -41,7 +43,7 @@ const [products, setProducts] = useState([]);
               <tr key={product.id}>
                 <td>{product.product_id}</td>
                 <td>{product.product_name}</td>
-                <td>{product.rating}</td>
+                <td><RatingStars rating={product.rating}/></td>
               </tr>
             ))}
           </tbody>
