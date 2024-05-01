@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Signin() {
-  const [ID, setID] = useState('1');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -50,7 +49,7 @@ export default function Signin() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ID })
+        body: JSON.stringify({ username })
       });
 
       if (!response.ok) {
@@ -59,13 +58,13 @@ export default function Signin() {
 
       const userData = await response.json();
 
-      if ((username === userData.username && password === userData.password && ID === '1') ||
-          (username === userData.username && password === userData.password && ID === '2'))
+      if ((username === userData.username && password === userData.password && username === 'admin') ||
+          (username === userData.username && password === userData.password && username === 'manager'))
       {
         updateUserRole(true);
         window.location.href = '/dashboard';
       }
-      else if((username === userData.username && password === userData.password && ID === '3'))
+      else if((username === userData.username && password === userData.password && username === 'qualityAnalyst'))
       {
         updateUserRole(true);
         window.location.href = '/RateProduct'; 
@@ -86,11 +85,6 @@ export default function Signin() {
         <h1 style={{ color: "#018673", fontFamily: "monospace" }}>SignIn</h1>
         <form onSubmit={handleSignIn}>
           <div className='inputs'>
-            <select placeholder='Login as' id="ID" value={ID} onChange={(e) => setID(e.target.value)}>
-              <option value="1">Admin</option>
-              <option value="2">Manager</option>
-              <option value="3">Quality Analyst</option>
-            </select>
             <input
               className='sui-input'
               required
