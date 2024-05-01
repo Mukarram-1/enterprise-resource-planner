@@ -10,6 +10,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import OutboxIcon from '@mui/icons-material/Outbox';
 
 export default function Sidebar() {
   const [username, setUsername] = useState('');
@@ -66,14 +67,22 @@ export default function Sidebar() {
         <StoreIcon/>
         <Link style={{width:"100%"}} to="/vendors"><span>Vendors</span></Link>
       </div>
-      <div className="sidebar-item">
-        <ProductionQuantityLimitsIcon/>
-        <Link to="/rawmaterials"><span>Raw Materials</span></Link>
-      </div>
       {username === 'admin' && (
+        <>
+        <div className="sidebar-item">
+          <ProductionQuantityLimitsIcon/>
+          <Link to="/rawmaterials"><span>Raw Materials</span></Link>
+        </div>
         <div className="sidebar-item">
           <ListAltIcon/>
           <Link style={{width:"100%"}} to="/orders"><span>Orders</span></Link>
+        </div>
+        </>
+      )}
+      {username === 'manager' && (
+        <div className="sidebar-item">
+          <OutboxIcon/>
+          <Link style={{width:"100%"}} to="/requestRawMaterials"><span>Request Orders</span></Link>
         </div>
       )}
       <div className="sidebar-item">
