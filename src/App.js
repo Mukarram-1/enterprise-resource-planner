@@ -11,6 +11,8 @@ import RawMaterials from './components/rawmaterials';
 import Signin from './components/signin'
 import ProductRating from './components/ProductRating';
 import RateProduct from './components/RateProduct';
+import RequestRawMaterials from './components/requestRawMaterials';
+import RequestedOrders from './components/requestedOrders';
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
         <Route path="/inventory" element={<Inventory/>} />
         <Route path="/orders" element={<Orders/>} />
         <Route path="/rawmaterials" element={<RawMaterials/>} />
+        <Route path="/requestRawMaterials" element={<RequestRawMaterials/>} />
+        <Route path="/requestedOrders" element={<RequestedOrders/>} />
         <Route path="/ProductRating" element={<ProductRating/>} />
         <Route path="/RateProduct" element={<RateProduct/>} />
       </Routes>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import './table.css';
-import Sidebar from "./DashBoardSidebar";
-import OrderRawMaterialsModalForm from "./orderRawMaterialsModalform";
+import { Link } from "react-router-dom";
 
-function RawMaterials() {
+import Sidebar from "./DashBoardSidebar";
+import RequestRawMaterialsModalForm from "./requestRawMaterialModalForm";
+
+function RequestRawMaterials() {
   const [rawMaterials, setRawMaterials] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -65,8 +66,8 @@ function RawMaterials() {
             <Link to="/requestedOrders"><span>Manager Requests</span></Link>
           </div>
           <div className="modalbtn">
-            <button onClick={openModal}>Order Raw Materials</button>
-            <OrderRawMaterialsModalForm isOpen={isModalOpen} onClose={closeModal} />
+            <button onClick={openModal}>Request Raw Materials</button>
+            <RequestRawMaterialsModalForm isOpen={isModalOpen} onClose={closeModal} />
           </div>
           </div>
         </div>
@@ -97,4 +98,4 @@ function RawMaterials() {
   );
 }
 
-export default RawMaterials;
+export default RequestRawMaterials;
